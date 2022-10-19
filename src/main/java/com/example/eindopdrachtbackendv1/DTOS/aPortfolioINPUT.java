@@ -1,2 +1,4 @@
-package com.example.eindopdrachtbackendv1.DTOS;public class PortfolioINPUT {
+package com.example.eindopdrachtbackendv1.DTOS;
+
+public class aPortfolioINPUT {
 }

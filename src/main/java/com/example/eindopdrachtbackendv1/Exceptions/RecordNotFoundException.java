@@ -1,2 +1,14 @@
-package com.example.eindopdrachtbackendv1.Exceptions;public class RecordNotFoundException {
+package com.example.eindopdrachtbackendv1.Exceptions;
+
+public class RecordNotFoundException  extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+
+    public RecordNotFoundException() {
+        super();
+    }
+
+    public RecordNotFoundException(String message) {
+        super(message);
+    }
 }

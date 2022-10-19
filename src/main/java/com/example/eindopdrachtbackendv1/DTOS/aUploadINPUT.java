@@ -1,2 +1,4 @@
-package com.example.eindopdrachtbackendv1.DTOS;public class UploadINPUT {
+package com.example.eindopdrachtbackendv1.DTOS;
+
+public class aUploadINPUT {
 }

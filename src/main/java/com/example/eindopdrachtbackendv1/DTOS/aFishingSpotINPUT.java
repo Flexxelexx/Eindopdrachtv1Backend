@@ -1,2 +1,4 @@
-package com.example.eindopdrachtbackendv1.DTOS;public class FishingSpotINPUT {
+package com.example.eindopdrachtbackendv1.DTOS;
+
+public class aFishingSpotINPUT {
 }
