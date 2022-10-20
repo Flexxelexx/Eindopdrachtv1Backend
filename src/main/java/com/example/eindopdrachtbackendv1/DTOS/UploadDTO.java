@@ -6,14 +6,14 @@ import java.time.LocalDateTime;
 
 public class UploadDTO {
 
-    private double weightFish;
-    private double lengthFish;
+    public double weightFish;
+    public double lengthFish;
 
-    private String charsFish;
-    private String speciesFish;
-    private String photoFish;
+    public String charsFish;
+    public String speciesFish;
+    public String photoFish;
 
-    private LocalDateTime timeCaughtFish;
+    public LocalDateTime timeCaughtFish;
 
     public static UploadDTO fromUpload (Upload upload) {
 

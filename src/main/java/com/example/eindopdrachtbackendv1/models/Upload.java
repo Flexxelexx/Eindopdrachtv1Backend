@@ -1,7 +1,7 @@
 package com.example.eindopdrachtbackendv1.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
@@ -9,14 +9,17 @@ import java.time.LocalDateTime;
 public class Upload {
 
     @Id
-    @GeneratedValue
+    @Column
     private double weightFish;
+    @Column
     private double lengthFish;
-
+    @Column
     private String charsFish;
+    @Column
     private String speciesFish;
+    @Column
     private String photoFish;
-
+    @Column
     private LocalDateTime timeCaughtFish;
 
 //    private xxxxx locationCaughtFish;

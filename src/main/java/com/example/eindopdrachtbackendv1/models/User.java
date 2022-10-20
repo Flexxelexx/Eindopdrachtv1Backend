@@ -1,7 +1,7 @@
 package com.example.eindopdrachtbackendv1.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
@@ -9,23 +9,33 @@ import java.time.LocalDate;
 public class User {
 
     @Id
-    @GeneratedValue
+    @Column
     private String name;
-    private String lastName;
-    private String profileName;
+    @Column
+    private String lastname;
+    @Column
+    private String profilename;
+    @Column
+    private String password;
+    @Column
+    private String apikey;
+    @Column
     private String email;
-
+    @Column
     private LocalDate dob;
+
 
 
     public User() {
 
     }
 
-    public User(String name, String lastName, String profileName, String email, LocalDate dob) {
+    public User(String name, String lastname, String profilename, String password, String apikey, String email, LocalDate dob) {
         this.name = name;
-        this.lastName = lastName;
-        this.profileName = profileName;
+        this.lastname = lastname;
+        this.profilename = profilename;
+        this.password = password;
+        this.apikey = apikey;
         this.email = email;
         this.dob = dob;
     }
@@ -38,20 +48,36 @@ public class User {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getProfileName() {
-        return profileName;
+    public String getProfilename() {
+        return profilename;
     }
 
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
+    public void setProfilename(String profilename) {
+        this.profilename = profilename;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getApikey() {
+        return apikey;
+    }
+
+    public void setApikey(String apikey) {
+        this.apikey = apikey;
     }
 
     public String getEmail() {
