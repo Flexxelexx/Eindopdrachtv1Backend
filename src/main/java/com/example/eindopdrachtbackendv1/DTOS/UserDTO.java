@@ -4,6 +4,7 @@ import com.example.eindopdrachtbackendv1.models.User;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -22,6 +23,7 @@ public class UserDTO {
     @Email
     @NotBlank
     public String email;
+    @Past
     @NotBlank
     public LocalDate dob;
 
@@ -41,16 +43,16 @@ public class UserDTO {
         return dto;
     }
 
-    public User toUser() {
+    public static User toUser(UserDTO userDTO) {
 
         User user = new User();
 
-        user.setName(this.getName());
-        user.setLastname(this.getLastname());
-        user.setProfilename(this.getProfilename());
-        user.setPassword(this.getPassword());
-        user.setEmail(this.getEmail());
-        user.setDob(this.getDob());
+        user.setName(userDTO.name);
+        user.setLastname(userDTO.lastname);
+        user.setProfilename(userDTO.profilename);
+        user.setPassword(userDTO.password);
+        user.setEmail(userDTO.email);
+        user.setDob(userDTO.dob);
 
         return user;
     }

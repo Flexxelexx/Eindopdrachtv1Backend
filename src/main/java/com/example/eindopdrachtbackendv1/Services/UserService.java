@@ -27,7 +27,7 @@ public class UserService {
         List <UserDTO> collection = new ArrayList<>();
         List <User> list = userRepository.findAll();
         for (User user : list) {
-            collection.add(fromUser(user));
+            collection.add(UserDTO.fromUser(user));
         }
 
         return collection;
@@ -37,7 +37,7 @@ public class UserService {
         UserDTO dto = new UserDTO();
         Optional<User> user = userRepository.findById(profileName);
         if (user.isPresent()) {
-            dto = fromUser(user.get());
+            dto = UserDTO.fromUser(user.get());
         } else {
             throw new UsernameNotFoundException(profileName);
         }
@@ -51,7 +51,7 @@ public class UserService {
     public String createUser (UserDTO userDTO) {
         String randomString = RandomStringGenerator.generateAlphaNumeric(20);
         userDTO.setApikey(randomString);
-        User newUser = userRepository.save(toUser(userDTO));
+        User newUser = userRepository.save(UserDTO.toUser(userDTO));
         return newUser.getProfilename();
     }
 
@@ -66,37 +66,4 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void uploadCaughtFish() {
-
-    }
-
-    public static UserDTO fromUser(User user) {
-
-        UserDTO dto = new UserDTO();
-
-        dto.name = user.getName();
-        dto.lastname = user.getLastname();
-        dto.profilename = user.getProfilename();
-        dto.password = user.getPassword();
-        dto.apikey = user.getApikey();
-        dto.email = user.getEmail();
-        dto.dob = user.getDob();
-
-        return dto;
-    }
-
-    public User toUser(UserDTO userDTO) {
-
-        var user = new User();
-
-        user.setName(userDTO.getName());
-        user.setLastname(userDTO.getLastname());
-        user.setProfilename(userDTO.getProfilename());
-        user.setPassword(userDTO.getPassword());
-        user.setApikey(userDTO.getApikey());
-        user.setEmail(userDTO.getEmail());
-        user.setDob(userDTO.getDob());
-
-        return user;
-    }
 }
