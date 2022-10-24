@@ -1,29 +1,31 @@
 package com.example.eindopdrachtbackendv1.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 public class FishingSpot {
 
-    @Id
-    @GeneratedValue
-    private double caughtFish;
 
-//    private double location;
-//    hoe moet ik dit gaan vertalen ^^ ??
-    private LocalTime timeCaught;
+    @Column
+    private double caughtFish;
+    @Id
+    @Column
+    private String spotLocation;
+    @Column
+    private LocalDateTime timeAndDateCaught;
 
 
     public FishingSpot() {
 
     }
 
-    public FishingSpot(double caughtFish, LocalTime timeCaught) {
+    public FishingSpot(double caughtFish, String spotLocation, LocalDateTime timeCaught) {
         this.caughtFish = caughtFish;
-        this.timeCaught = timeCaught;
+        this.spotLocation = spotLocation;
+        this.timeAndDateCaught = timeCaught;
     }
 
     public double getCaughtFish() {
@@ -34,11 +36,19 @@ public class FishingSpot {
         this.caughtFish = caughtFish;
     }
 
-    public LocalTime getTimeCaught() {
-        return timeCaught;
+    public String getSpotLocation() {
+        return spotLocation;
     }
 
-    public void setTimeCaught(LocalTime timeCaught) {
-        this.timeCaught = timeCaught;
+    public void setSpotLocation(String spotLocation) {
+        this.spotLocation = spotLocation;
+    }
+
+    public LocalDateTime getTimeAndDateCaught() {
+        return timeAndDateCaught;
+    }
+
+    public void setTimeAndDateCaught(LocalDateTime timeAndDateCaught) {
+        this.timeAndDateCaught = timeAndDateCaught;
     }
 }

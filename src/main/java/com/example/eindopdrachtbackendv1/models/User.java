@@ -10,15 +10,13 @@ public class User {
 
     @Id
     @Column
-    private String name;
+    private String fname;
     @Column
     private String lastname;
     @Column
     private String profilename;
     @Column
     private String password;
-    @Column
-    private String apikey;
     @Column
     private String email;
     @Column
@@ -30,22 +28,21 @@ public class User {
 
     }
 
-    public User(String name, String lastname, String profilename, String password, String apikey, String email, LocalDate dob) {
-        this.name = name;
+    public User(String fname, String lastname, String profilename, String password, String email, LocalDate dob) {
+        this.fname = fname;
         this.lastname = lastname;
         this.profilename = profilename;
         this.password = password;
-        this.apikey = apikey;
         this.email = email;
         this.dob = dob;
     }
 
     public String getName() {
-        return name;
+        return fname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String fname) {
+        this.fname = fname;
     }
 
     public String getLastname() {
@@ -72,13 +69,6 @@ public class User {
         this.password = password;
     }
 
-    public String getApikey() {
-        return apikey;
-    }
-
-    public void setApikey(String apikey) {
-        this.apikey = apikey;
-    }
 
     public String getEmail() {
         return email;

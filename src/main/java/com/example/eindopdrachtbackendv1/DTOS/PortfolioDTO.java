@@ -20,13 +20,13 @@ public class PortfolioDTO {
         return dto;
     }
 
-    public Portfolio toPortfolio() {
+    public static Portfolio toPortfolio(PortfolioDTO portfolioDTO) {
 
         Portfolio portfolio = new Portfolio();
 
-        portfolio.setCountFish(this.getCountFish());
-        portfolio.setCountFishingSpot(this.getCountFishingSpot());
-        portfolio.setPortfolioID(this.getPortfolioID());
+        portfolio.setCountFish(portfolioDTO.getCountFish());
+        portfolio.setCountFishingSpot(portfolioDTO.getCountFishingSpot());
+        portfolio.setPortfolioID(portfolioDTO.getPortfolioID());
 
         return portfolio;
     }

@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class UserDTO {
 
     @NotBlank
-    public String name;
+    public String fname;
     @NotBlank
     public String lastname;
     @NotBlank
@@ -19,7 +19,6 @@ public class UserDTO {
     @NotBlank
     @Size(min=6, max=20)
     public String password;
-    public String apikey;
     @Email
     @NotBlank
     public String email;
@@ -36,7 +35,6 @@ public class UserDTO {
         dto.setLastname(user.getLastname());
         dto.setProfilename(user.getProfilename());
         dto.setPassword(user.getPassword());
-        dto.setApikey(user.getApikey());
         dto.setEmail(user.getEmail());
         dto.setDob(user.getDob());
 
@@ -47,7 +45,7 @@ public class UserDTO {
 
         User user = new User();
 
-        user.setName(userDTO.name);
+        user.setName(userDTO.fname);
         user.setLastname(userDTO.lastname);
         user.setProfilename(userDTO.profilename);
         user.setPassword(userDTO.password);
@@ -59,10 +57,10 @@ public class UserDTO {
 
 
     public String getName() {
-        return name;
+        return fname;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String fname) {
+        this.fname = fname;
     }
 
     public String getLastname() {
@@ -84,13 +82,6 @@ public class UserDTO {
     }
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getApikey() {
-        return apikey;
-    }
-    public void setApikey(String apikey) {
-        this.apikey = apikey;
     }
 
     public String getEmail() {

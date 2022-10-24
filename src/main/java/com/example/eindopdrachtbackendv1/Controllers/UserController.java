@@ -2,21 +2,17 @@ package com.example.eindopdrachtbackendv1.Controllers;
 
 import com.example.eindopdrachtbackendv1.DTOS.UserDTO;
 import com.example.eindopdrachtbackendv1.Services.UserService;
-import com.example.eindopdrachtbackendv1.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
-//    @Autowired
 
     @Autowired
     private UserService userService;
@@ -37,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok().body(optionalUser);
     }
 
-    @PostMapping("/account")
+    @PostMapping("")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO dto) {
 
         String newUsername = userService.createUser(dto);
@@ -46,5 +42,59 @@ public class UserController {
                 .buildAndExpand(newUsername).toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<UserDTO> updateName(@PathVariable("username") String fname, @RequestBody UserDTO dto) {
+
+        userService.updateName(fname, dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<UserDTO> updateLastname(@PathVariable("username") String lastName, @RequestBody UserDTO dto) {
+
+        userService.updateLastname(lastName, dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<UserDTO> updateProfilename(@PathVariable("username") String profileName, @RequestBody UserDTO dto) {
+
+        userService.updateProfilename(profileName, dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<UserDTO> updatePassword(@PathVariable("username") String password, @RequestBody UserDTO dto) {
+
+        userService.updatePassword(password, dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<UserDTO> updateEmail(@PathVariable("username") String email, @RequestBody UserDTO dto) {
+
+        userService.updateEmail(email, dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<UserDTO> updateDob(@PathVariable("username") String dob, @RequestBody UserDTO dto) {
+
+        userService.updateDob(dob, dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping(value = "/{username}")
+    public ResponseEntity<Object> deleteUser(@PathVariable("username") String username) {
+        userService.deleteUser(username);
+        return ResponseEntity.noContent().build();
     }
 }

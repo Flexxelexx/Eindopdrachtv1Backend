@@ -2,33 +2,39 @@ package com.example.eindopdrachtbackendv1.DTOS;
 
 import com.example.eindopdrachtbackendv1.models.FishingSpot;
 
-import java.time.LocalTime;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import java.time.LocalDateTime;
+
 
 public class FishingSpotDTO {
-
+    @NotBlank
     private double caughtFish;
+    @NotBlank
+    private String spotLocation;
+    @NotBlank
+    @Past
+    private LocalDateTime timeAndDateCaught;
 
-    //    private double location;
-//    hoe moet ik dit gaan vertalen ^^ ??
 
-    private LocalTime timeCaught;
-
-    public static FishingSpotDTO fromFishingSpot (FishingSpot fishingSpot) {
+    public static FishingSpotDTO fromFishingSpot(FishingSpot fishingSpot) {
 
         FishingSpotDTO dto = new FishingSpotDTO();
 
         dto.setCaughtFish(fishingSpot.getCaughtFish());
-        dto.setTimeCaught(fishingSpot.getTimeCaught());
+        dto.setSpotLocation(fishingSpot.getSpotLocation());
+        dto.setTimeAndDateCaught(fishingSpot.getTimeCaught());
 
         return dto;
     }
 
-    public FishingSpot toFishingspot() {
+    public static FishingSpot toFishingspot(FishingSpotDTO fishingSpotDTO) {
 
         FishingSpot fishingSpot = new FishingSpot();
 
-        fishingSpot.setCaughtFish(this.getCaughtFish());
-        fishingSpot.setTimeCaught(this.getTimeCaught());
+        fishingSpot.setCaughtFish(fishingSpotDTO.getCaughtFish());
+        fishingSpot.setSpotLocation(fishingSpotDTO.getSpotLocation());
+        fishingSpot.setTimeCaught(fishingSpotDTO.getTimeAndDateCaught());
 
         return fishingSpot;
     }
@@ -41,11 +47,19 @@ public class FishingSpotDTO {
         this.caughtFish = caughtFish;
     }
 
-    public LocalTime getTimeCaught() {
-        return timeCaught;
+    public String getSpotLocation() {
+        return spotLocation;
     }
 
-    public void setTimeCaught(LocalTime timeCaught) {
-        this.timeCaught = timeCaught;
+    public void setSpotLocation(String spotLocation) {
+        this.spotLocation = spotLocation;
+    }
+
+    public LocalDateTime getTimeAndDateCaught() {
+        return timeAndDateCaught;
+    }
+
+    public void setTimeAndDateCaught(LocalDateTime timeAndDateCaught) {
+        this.timeAndDateCaught = timeAndDateCaught;
     }
 }
