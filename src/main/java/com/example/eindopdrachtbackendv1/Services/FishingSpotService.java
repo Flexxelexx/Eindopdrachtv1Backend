@@ -32,13 +32,13 @@ public class FishingSpotService {
         return collection;
     }
 
-    public FishingSpotDTO getFishingSpot(String fishingspot) {
+    public FishingSpotDTO getFishingSpot(Long id) {
         FishingSpotDTO dto = new FishingSpotDTO();
-        Optional<FishingSpot> user = fishingSpotRepository.findById(fishingspot);
+        Optional<FishingSpot> user = fishingSpotRepository.findById(id);
         if (user.isPresent()) {
             dto = FishingSpotDTO.fromFishingSpot(user.get());
         } else {
-            throw new RecordNotFoundException(fishingspot);
+            throw new RecordNotFoundException(id.toString());
         }
         return dto;
     }
@@ -48,26 +48,17 @@ public class FishingSpotService {
         return newFishingSpot.getSpotLocation();
     }
 
-    public void deleteFishingSpot(String fishingspot) {
-        fishingSpotRepository.deleteById(fishingspot);
+    public void deleteFishingSpot(Long id) {
+        fishingSpotRepository.deleteById(id);
     }
 
-    public void updateCaughtFish (String caughtFish, FishingSpotDTO newFish) {
-        FishingSpot fishingSpot = fishingSpotRepository.findById(caughtFish).get();
-        fishingSpot.setCaughtFish(newFish.getCaughtFish());
-        fishingSpotRepository.save(fishingSpot);
-    }
-    public void updateSpotLocation(String spotLocation, FishingSpotDTO newFishingSpot) {
-        FishingSpot fishingSpot = fishingSpotRepository.findById(spotLocation).get();
+    public void updateSpotLocation(Long id, FishingSpotDTO newFishingSpot) {
+        FishingSpot fishingSpot = fishingSpotRepository.findById(id).get();
         fishingSpot.setSpotLocation(newFishingSpot.getSpotLocation());
         fishingSpotRepository.save(fishingSpot);
     }
 
-    public void updateTimeAndDateCaught (LocalDateTime timeAndDateCaught, FishingSpotDTO newCaughtTime) {
-        FishingSpot fishingSpot = fishingSpotRepository.(newCaughtTime);
-        fishingSpot.setTimeAndDateCaught(newCaughtTime.getTimeAndDateCaught());
-        fishingSpotRepository.save(fishingSpot);
-    }
+
 
 
 

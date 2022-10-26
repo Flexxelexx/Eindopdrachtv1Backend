@@ -3,27 +3,21 @@ package com.example.eindopdrachtbackendv1.DTOS;
 import com.example.eindopdrachtbackendv1.models.FishingSpot;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
-import java.time.LocalDateTime;
-
 
 public class FishingSpotDTO {
-    @NotBlank
-    private double caughtFish;
+
+    private Long id;
     @NotBlank
     private String spotLocation;
-    @NotBlank
-    @Past
-    private LocalDateTime timeAndDateCaught;
 
 
     public static FishingSpotDTO fromFishingSpot(FishingSpot fishingSpot) {
 
         FishingSpotDTO dto = new FishingSpotDTO();
 
-        dto.setCaughtFish(fishingSpot.getCaughtFish());
+        dto.setId(fishingSpot.getId());
         dto.setSpotLocation(fishingSpot.getSpotLocation());
-        dto.setTimeAndDateCaught(fishingSpot.getTimeCaught());
+
 
         return dto;
     }
@@ -32,19 +26,19 @@ public class FishingSpotDTO {
 
         FishingSpot fishingSpot = new FishingSpot();
 
-        fishingSpot.setCaughtFish(fishingSpotDTO.getCaughtFish());
+        fishingSpot.setId(fishingSpotDTO.getId());
         fishingSpot.setSpotLocation(fishingSpotDTO.getSpotLocation());
-        fishingSpot.setTimeCaught(fishingSpotDTO.getTimeAndDateCaught());
+
 
         return fishingSpot;
     }
 
-    public double getCaughtFish() {
-        return caughtFish;
+    public Long getId() {
+        return id;
     }
 
-    public void setCaughtFish(double caughtFish) {
-        this.caughtFish = caughtFish;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSpotLocation() {
@@ -55,11 +49,4 @@ public class FishingSpotDTO {
         this.spotLocation = spotLocation;
     }
 
-    public LocalDateTime getTimeAndDateCaught() {
-        return timeAndDateCaught;
-    }
-
-    public void setTimeAndDateCaught(LocalDateTime timeAndDateCaught) {
-        this.timeAndDateCaught = timeAndDateCaught;
-    }
 }

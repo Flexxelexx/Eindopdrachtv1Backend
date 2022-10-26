@@ -10,14 +10,11 @@ import java.time.LocalDate;
 
 public class UserDTO {
 
-    @NotBlank
-    public String fname;
-    @NotBlank
-    public String lastname;
+    public Long id;
     @NotBlank
     public String profilename;
     @NotBlank
-    @Size(min=6, max=20)
+    @Size(min = 6, max = 20)
     public String password;
     @Email
     @NotBlank
@@ -27,12 +24,11 @@ public class UserDTO {
     public LocalDate dob;
 
 
-    public static UserDTO fromUser (User user) {
+    public static UserDTO fromUser(User user) {
 
         UserDTO dto = new UserDTO();
 
-        dto.setName(user.getName());
-        dto.setLastname(user.getLastname());
+        dto.setId(user.getId());
         dto.setProfilename(user.getProfilename());
         dto.setPassword(user.getPassword());
         dto.setEmail(user.getEmail());
@@ -45,8 +41,7 @@ public class UserDTO {
 
         User user = new User();
 
-        user.setName(userDTO.fname);
-        user.setLastname(userDTO.lastname);
+        user.setId(userDTO.id);
         user.setProfilename(userDTO.profilename);
         user.setPassword(userDTO.password);
         user.setEmail(userDTO.email);
@@ -56,23 +51,18 @@ public class UserDTO {
     }
 
 
-    public String getName() {
-        return fname;
-    }
-    public void setName(String fname) {
-        this.fname = fname;
+    public Long getId() {
+        return id;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getProfilename() {
         return profilename;
     }
+
     public void setProfilename(String profilename) {
         this.profilename = profilename;
     }
@@ -80,6 +70,7 @@ public class UserDTO {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -87,6 +78,7 @@ public class UserDTO {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -94,6 +86,7 @@ public class UserDTO {
     public LocalDate getDob() {
         return dob;
     }
+
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }

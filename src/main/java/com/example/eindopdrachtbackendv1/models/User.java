@@ -1,18 +1,18 @@
 package com.example.eindopdrachtbackendv1.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collection;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
+    @GeneratedValue
     @Column
-    private String fname;
-    @Column
-    private String lastname;
+    Long id;
+
     @Column
     private String profilename;
     @Column
@@ -22,35 +22,27 @@ public class User {
     @Column
     private LocalDate dob;
 
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Roles> roles;
 
     public User() {
 
     }
 
-    public User(String fname, String lastname, String profilename, String password, String email, LocalDate dob) {
-        this.fname = fname;
-        this.lastname = lastname;
+    public User(Long id, String profilename, String password, String email, LocalDate dob) {
+        this.id = id;
         this.profilename = profilename;
         this.password = password;
         this.email = email;
         this.dob = dob;
     }
 
-    public String getName() {
-        return fname;
+    public Long getId() {
+        return id;
     }
 
-    public void setName(String fname) {
-        this.fname = fname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getProfilename() {
@@ -68,7 +60,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getEmail() {
         return email;

@@ -9,6 +9,7 @@ public class Rating {
 
     @Id
     @GeneratedValue
+    private Long id;
     private String oneStar;
     private String twoStars;
     private String threeStars;
@@ -20,12 +21,21 @@ public class Rating {
 
     }
 
-    public Rating(String oneStar, String twoStars, String threeStars, String fourStars, String fiveStars) {
+    public Rating(Long id, String oneStar, String twoStars, String threeStars, String fourStars, String fiveStars) {
+        this.id = id;
         this.oneStar = oneStar;
         this.twoStars = twoStars;
         this.threeStars = threeStars;
         this.fourStars = fourStars;
         this.fiveStars = fiveStars;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getOneStar() {

@@ -1,39 +1,36 @@
 package com.example.eindopdrachtbackendv1.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "fishingspots")
 public class FishingSpot {
 
+    @Id
+    @GeneratedValue
+    Long id;
 
     @Column
-    private double caughtFish;
-    @Id
-    @Column
     private String spotLocation;
-    @Column
-    private LocalDateTime timeAndDateCaught;
+
 
 
     public FishingSpot() {
 
     }
 
-    public FishingSpot(double caughtFish, String spotLocation, LocalDateTime timeCaught) {
-        this.caughtFish = caughtFish;
+    public FishingSpot(Long id, String spotLocation) {
+        this.id = id;
         this.spotLocation = spotLocation;
-        this.timeAndDateCaught = timeCaught;
+
     }
 
-    public double getCaughtFish() {
-        return caughtFish;
+    public Long getId() {
+        return id;
     }
 
-    public void setCaughtFish(double caughtFish) {
-        this.caughtFish = caughtFish;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSpotLocation() {
@@ -44,11 +41,4 @@ public class FishingSpot {
         this.spotLocation = spotLocation;
     }
 
-    public LocalDateTime getTimeAndDateCaught() {
-        return timeAndDateCaught;
-    }
-
-    public void setTimeAndDateCaught(LocalDateTime timeAndDateCaught) {
-        this.timeAndDateCaught = timeAndDateCaught;
-    }
 }

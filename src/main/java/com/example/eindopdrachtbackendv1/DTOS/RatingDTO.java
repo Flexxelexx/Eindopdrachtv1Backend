@@ -4,6 +4,7 @@ import com.example.eindopdrachtbackendv1.models.Rating;
 
 public class RatingDTO {
 
+    private Long id;
     private String oneStar;
     private String twoStars;
     private String threeStars;
@@ -14,6 +15,7 @@ public class RatingDTO {
 
         RatingDTO dto = new RatingDTO();
 
+        dto.setId(rating.getId());
         dto.setOneStar(rating.getOneStar());
         dto.setTwoStars(rating.getTwoStars());
         dto.setThreeStars(rating.getThreeStars());
@@ -23,17 +25,26 @@ public class RatingDTO {
         return dto;
     }
 
-    public Rating toRating() {
+    public static Rating toRating(RatingDTO ratingDTO) {
 
         Rating rating = new Rating();
 
-        rating.setOneStar(this.getOneStar());
-        rating.setTwoStars(this.getTwoStars());
-        rating.setThreeStars(this.getThreeStars());
-        rating.setFourStars(this.getFourStars());
-        rating.setFiveStars(this.getFiveStars());
+        rating.setId(ratingDTO.id);
+        rating.setOneStar(ratingDTO.oneStar);
+        rating.setTwoStars(ratingDTO.twoStars);
+        rating.setThreeStars(ratingDTO.threeStars);
+        rating.setFourStars(ratingDTO.fourStars);
+        rating.setFiveStars(ratingDTO.fiveStars);
 
         return rating;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getOneStar() {

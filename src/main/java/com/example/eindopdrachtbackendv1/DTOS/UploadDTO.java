@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class UploadDTO {
 
+    public Long id;
     public double weightFish;
     public double lengthFish;
 
@@ -19,6 +20,7 @@ public class UploadDTO {
 
         UploadDTO dto = new UploadDTO();
 
+        dto.setId(upload.getId());
         dto.setWeightFish(upload.getWeightFish());
         dto.setLengthFish(upload.getLengthFish());
         dto.setCharsFish(upload.getCharsFish());
@@ -29,18 +31,27 @@ public class UploadDTO {
         return dto;
     }
 
-    public Upload toUpload() {
+    public static Upload toUpload(UploadDTO uploadDTO) {
 
         Upload upload = new Upload();
 
-        upload.setWeightFish(this.getWeightFish());
-        upload.setLengthFish(this.getLengthFish());
-        upload.setCharsFish(this.getCharsFish());
-        upload.setSpeciesFish(this.getSpeciesFish());
-        upload.setPhotoFish(this.getPhotoFish());
-        upload.setTimeCaughtFish(this.getTimeCaughtFish());
+        upload.setId(uploadDTO.id);
+        upload.setWeightFish(uploadDTO.weightFish);
+        upload.setLengthFish(uploadDTO.lengthFish);
+        upload.setCharsFish(uploadDTO.charsFish);
+        upload.setSpeciesFish(uploadDTO.speciesFish);
+        upload.setPhotoFish(uploadDTO.photoFish);
+        upload.setTimeCaughtFish(uploadDTO.timeCaughtFish);
 
         return upload;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getWeightFish() {

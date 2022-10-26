@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class Upload {
 
     @Id
+    private Long id;
     @Column
     private double weightFish;
     @Column
@@ -22,14 +23,13 @@ public class Upload {
     @Column
     private LocalDateTime timeCaughtFish;
 
-//    private xxxxx locationCaughtFish;
-//    hoe moet ik dit gaan vertalen ^^ ??
 
     public Upload() {
 
     }
 
-    public Upload(double weightFish, double lengthFish, String charsFish, String speciesFish, String photoFish, LocalDateTime timeCaughtFish) {
+    public Upload(Long id, double weightFish, double lengthFish, String charsFish, String speciesFish, String photoFish, LocalDateTime timeCaughtFish) {
+        this.id = id;
         this.weightFish = weightFish;
         this.lengthFish = lengthFish;
         this.charsFish = charsFish;
@@ -38,6 +38,13 @@ public class Upload {
         this.timeCaughtFish = timeCaughtFish;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public double getWeightFish() {
         return weightFish;

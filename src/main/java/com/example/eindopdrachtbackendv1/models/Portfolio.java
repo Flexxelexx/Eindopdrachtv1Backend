@@ -1,36 +1,34 @@
 package com.example.eindopdrachtbackendv1.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "portfolios")
 public class Portfolio {
 
     @Id
+    @GeneratedValue
     @Column
-    private double countFish;
+    private Long portfolioID;
     @Column
     private double countFishingSpot;
-    @Column
-    private int portfolioID;
+
 
     public Portfolio() {
 
     }
 
-    public Portfolio(double countFish, double countFishingSpot, int portfolioID) {
-        this.countFish = countFish;
-        this.countFishingSpot = countFishingSpot;
+    public Portfolio(Long portfolioID, double countFishingSpot) {
         this.portfolioID = portfolioID;
+        this.countFishingSpot = countFishingSpot;
     }
 
-    public double getCountFish() {
-        return countFish;
+    public Long getPortfolioID() {
+        return portfolioID;
     }
 
-    public void setCountFish(double countFish) {
-        this.countFish = countFish;
+    public void setPortfolioID(Long portfolioID) {
+        this.portfolioID = portfolioID;
     }
 
     public double getCountFishingSpot() {
@@ -39,13 +37,5 @@ public class Portfolio {
 
     public void setCountFishingSpot(double countFishingSpot) {
         this.countFishingSpot = countFishingSpot;
-    }
-
-    public int getPortfolioID() {
-        return portfolioID;
-    }
-
-    public void setPortfolioID(int portfolioID) {
-        this.portfolioID = portfolioID;
     }
 }

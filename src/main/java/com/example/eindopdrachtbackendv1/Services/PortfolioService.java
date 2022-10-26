@@ -30,29 +30,36 @@ public class PortfolioService {
         return collection;
     }
 
-    public PortfolioDTO getPortfolio (String portfolio) {
+    public PortfolioDTO getPortfolio (Long id) {
         PortfolioDTO dto = new PortfolioDTO();
-        Optional<Portfolio> port = portfolioRepository.findById(portfolio);
+        Optional<Portfolio> port = portfolioRepository.findById(id);
         if (port.isPresent()) {
             dto = PortfolioDTO.fromPortfolio(port.get());
         } else {
-            throw new RecordNotFoundException(portfolio);
+            throw new RecordNotFoundException(id.toString());
         }
         return dto;
     }
 
-    public int createPortfolio (PortfolioDTO portfolioDTO) {
+    public Long createPortfolio (PortfolioDTO portfolioDTO) {
         Portfolio newPortfolio = portfolioRepository.save(PortfolioDTO.toPortfolio(portfolioDTO));
         return newPortfolio.getPortfolioID();
     }
 
-    public void deletePortfolio (String portfolioID) {
-        portfolioRepository.deleteById(portfolioID);
+    public void deletePortfolio (Long id) {
+        portfolioRepository.deleteById(id);
     }
 
-    public void updatePortfolio (String portfolioID, PortfolioDTO newPortfolio) {
-        if (!portfolioRepository.existsById(portfolioID)) throw new RecordNotFoundException();
-        Portfolio portfolio = portfolioRepository.findById(portfolioID).get();
+    public void updatePortfolio (Long id, PortfolioDTO newPortfolio) {
+        if (!portfolioRepository.existsById(id)) throw new RecordNotFoundException();
+        Portfolio portfolio = portfolioRepository.findById(id).get();
+        portfolio.setCountFishingSpot(newPortfolio.getCountFishingSpot());
+        portfolioRepository.save(portfolio);
+    }
+
+    public void updateCountFishingspot (Long id, PortfolioDTO newPortfolio) {
+        if (!portfolioRepository.existsById(id)) throw new RecordNotFoundException();
+        Portfolio portfolio = portfolioRepository.findById(id).get();
         portfolio.setCountFishingSpot(newPortfolio.getCountFishingSpot());
         portfolioRepository.save(portfolio);
     }
