@@ -1,4 +1,4 @@
-package com.example.eindopdrachtbackendv1;
+package com.example.eindopdrachtbackendv1.Utils;
 
 public class FileUploadResponse {
 

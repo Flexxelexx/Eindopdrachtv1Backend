@@ -2,7 +2,6 @@ package com.example.eindopdrachtbackendv1.Controllers;
 
 import com.example.eindopdrachtbackendv1.DTOS.UploadDTO;
 import com.example.eindopdrachtbackendv1.Services.UploadService;
-import com.example.eindopdrachtbackendv1.models.Upload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/upload")
 public class UploadController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class UploadController {
         return ResponseEntity.ok().body(optionalUpload);
     }
 
-    @PostMapping("")
+    @PostMapping(value = "/create")
     public ResponseEntity<UploadDTO> createUpload(@RequestBody UploadDTO id) {
 
         String newUpload = uploadService.createUpload(id).toString();
@@ -44,57 +44,51 @@ public class UploadController {
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping(value = "/{upload}")
-    public ResponseEntity<Object> deleteUpload (@PathVariable("upload") Long id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Object> deleteUpload (@PathVariable Long id) {
         uploadService.deleteUpload(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{upload}")
-    public ResponseEntity<UploadDTO> updateWeightFish (@PathVariable("upload") Long id, @RequestBody UploadDTO dto) {
+    @PutMapping(value = "/{id}/updateweight")
+    public ResponseEntity<UploadDTO> updateWeightFish (@PathVariable Long id, @RequestBody UploadDTO dto) {
 
         uploadService.updateWeightFish(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{upload}")
-    public ResponseEntity<UploadDTO> updateLengthFish (@PathVariable("upload") Long id, @RequestBody UploadDTO dto) {
+    @PutMapping(value = "/{id}/updatelength")
+    public ResponseEntity<UploadDTO> updateLengthFish (@PathVariable Long id, @RequestBody UploadDTO dto) {
 
         uploadService.updateLengthFish(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{upload}")
-    public ResponseEntity<UploadDTO> updateCharsFish (@PathVariable("upload") Long id, @RequestBody UploadDTO dto) {
+    @PutMapping(value = "/{id}updatechars")
+    public ResponseEntity<UploadDTO> updateCharsFish (@PathVariable Long id, @RequestBody UploadDTO dto) {
 
         uploadService.updateCharsFish(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{upload}")
-    public ResponseEntity<UploadDTO> updateSpeciesFish (@PathVariable("upload") Long id, @RequestBody UploadDTO dto) {
+    @PutMapping(value = "/{id}/updatespecies")
+    public ResponseEntity<UploadDTO> updateSpeciesFish (@PathVariable Long id, @RequestBody UploadDTO dto) {
 
         uploadService.updateSpeciesFish(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{upload}")
-    public ResponseEntity<UploadDTO> updateTimeCaughtFish (@PathVariable("upload") Long id, @RequestBody UploadDTO dto) {
+    @PutMapping(value = "/{id}updatetime")
+    public ResponseEntity<UploadDTO> updateTimeCaughtFish (@PathVariable Long id, @RequestBody UploadDTO dto) {
 
         uploadService.updateTimeCaughtFish(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-//    @PutMapping(value = "/{upload}")
-//    public ResponseEntity<UploadDTO> updatePhotoFish (@PathVariable("upload") Long id, @RequestBody UploadDTO dto) {
-//
-//        uploadService.updatePhotoFish(id, dto);
-//
-//        return ResponseEntity.noContent().build();
-//    }
+
 }

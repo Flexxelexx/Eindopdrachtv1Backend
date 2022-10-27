@@ -11,6 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/rating")
 public class RatingController {
 
     @Autowired
@@ -32,7 +33,7 @@ public class RatingController {
         return ResponseEntity.ok().body(ratingDTO);
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<RatingDTO> createRating(@RequestBody RatingDTO id) {
 
         String newRating = String.valueOf(ratingService.createRating(id));
@@ -43,46 +44,46 @@ public class RatingController {
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping(value = "/{rating}")
-    public ResponseEntity<Object> deleteRating(@PathVariable("rating") Long id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Object> deleteRating(@PathVariable Long id) {
         ratingService.deleteRating(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{rating}")
-    public ResponseEntity <RatingDTO> updateOneStar (@PathVariable("rating") Long id, @RequestBody RatingDTO dto) {
+    @PutMapping(value = "/{id}/giveonestar")
+    public ResponseEntity <RatingDTO> updateOneStar (@PathVariable Long id, @RequestBody RatingDTO dto) {
 
         ratingService.updateOneStar(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{rating}")
-    public ResponseEntity <RatingDTO> updateTwoStars (@PathVariable("rating") Long id, @RequestBody RatingDTO dto) {
+    @PutMapping(value = "/{id}/give2stars")
+    public ResponseEntity <RatingDTO> updateTwoStars (@PathVariable Long id, @RequestBody RatingDTO dto) {
 
         ratingService.updateTwoStars(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{rating}")
-    public ResponseEntity <RatingDTO> updateThreeStars (@PathVariable("rating") Long id, @RequestBody RatingDTO dto) {
+    @PutMapping(value = "/{id}/give3stars")
+    public ResponseEntity <RatingDTO> updateThreeStars (@PathVariable Long id, @RequestBody RatingDTO dto) {
 
         ratingService.updateThreeStars(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{rating}")
-    public ResponseEntity <RatingDTO> updateFourStars (@PathVariable("rating") Long id, @RequestBody RatingDTO dto) {
+    @PutMapping(value = "/{id}/givefourstars")
+    public ResponseEntity <RatingDTO> updateFourStars (@PathVariable Long id, @RequestBody RatingDTO dto) {
 
         ratingService.updateFourStars(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{rating}")
-    public ResponseEntity <RatingDTO> updateFiveStars (@PathVariable("rating") Long id, @RequestBody RatingDTO dto) {
+    @PutMapping(value = "/{id}/givefivestars")
+    public ResponseEntity <RatingDTO> updateFiveStars (@PathVariable Long id, @RequestBody RatingDTO dto) {
 
         ratingService.updateFiveStars(id, dto);
 

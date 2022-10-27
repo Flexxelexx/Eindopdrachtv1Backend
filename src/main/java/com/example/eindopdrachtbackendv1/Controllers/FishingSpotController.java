@@ -11,6 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/fishingspot")
 public class FishingSpotController {
 
    @Autowired
@@ -32,7 +33,7 @@ public class FishingSpotController {
        return ResponseEntity.ok().body(optionalFishingSpot);
    }
 
-   @PostMapping("")
+   @PostMapping(value = "/create")
     public ResponseEntity<FishingSpotDTO> createFishingSpot(@RequestBody FishingSpotDTO id) {
 
        String newFishingspot = fishingSpotService.createFishingSpot(id);
@@ -43,8 +44,8 @@ public class FishingSpotController {
        return ResponseEntity.created(location).build();
    }
 
-   @PostMapping(value = "/{fishingspot}")
-    public ResponseEntity<FishingSpotDTO> updateSpotLocation (@PathVariable("fishingspot") Long id, @RequestBody FishingSpotDTO dto) {
+   @PostMapping(value = "/{id}/updatelocation")
+    public ResponseEntity<FishingSpotDTO> updateSpotLocation (@PathVariable Long id, @RequestBody FishingSpotDTO dto) {
 
        fishingSpotService.updateSpotLocation(id, dto);
 

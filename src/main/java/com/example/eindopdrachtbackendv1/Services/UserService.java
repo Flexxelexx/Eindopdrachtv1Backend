@@ -49,7 +49,7 @@ public class UserService {
 
     public String createUser (UserDTO userDTO) {
         User newUser = userRepository.save(UserDTO.toUser(userDTO));
-        return newUser.getProfilename();
+        return newUser.getUsername();
     }
 
     public void deleteUser(Long id) {
@@ -57,10 +57,10 @@ public class UserService {
     }
 
 
-    public void updateProfilename( Long id, UserDTO newUser) {
+    public void updateUsername( Long id, UserDTO newUser) {
         if (!userExists(id)) throw new RecordNotFoundException();
         User user = userRepository.findById(id).get();
-        user.setProfilename(newUser.getProfilename());
+        user.setUsername(newUser.getUsername());
         userRepository.save(user);
     }
 

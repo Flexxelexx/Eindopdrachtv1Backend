@@ -14,7 +14,7 @@ public class User {
     Long id;
 
     @Column
-    private String profilename;
+    private String username;
     @Column
     private String password;
     @Column
@@ -23,15 +23,15 @@ public class User {
     private LocalDate dob;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Roles> roles;
+    private Collection<Role> roles;
 
     public User() {
 
     }
 
-    public User(Long id, String profilename, String password, String email, LocalDate dob) {
+    public User(Long id, String username, String password, String email, LocalDate dob) {
         this.id = id;
-        this.profilename = profilename;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.dob = dob;
@@ -45,12 +45,12 @@ public class User {
         this.id = id;
     }
 
-    public String getProfilename() {
-        return profilename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setProfilename(String profilename) {
-        this.profilename = profilename;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -75,5 +75,13 @@ public class User {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }

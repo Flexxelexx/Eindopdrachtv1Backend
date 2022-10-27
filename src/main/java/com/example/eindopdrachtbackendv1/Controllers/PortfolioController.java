@@ -13,6 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/portfolio")
 public class PortfolioController {
 
     @Autowired
@@ -35,7 +36,7 @@ public class PortfolioController {
         return ResponseEntity.ok().body(portfolioDTO);
     }
 
-    @PostMapping("")
+    @PostMapping(value = "/create")
     public ResponseEntity <PortfolioDTO> createPortfolio (@RequestBody PortfolioDTO id) {
 
         Long newPortfolio = portfolioService.createPortfolio(id);
@@ -46,14 +47,14 @@ public class PortfolioController {
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping(value = "/{portfolio}")
-    public ResponseEntity<Object> deletePortfolio(@PathVariable("portfolio") Long id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Object> deletePortfolio(@PathVariable Long id) {
         portfolioService.deletePortfolio(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{portfolio}")
-    public ResponseEntity <PortfolioDTO> updateCountFishingSpot(@PathVariable("portfolio") Long id, @RequestBody PortfolioDTO dto) {
+    @PutMapping("/{id}/updatecountfishes")
+    public ResponseEntity <PortfolioDTO> updateCountFishingSpot(@PathVariable Long id, @RequestBody PortfolioDTO dto) {
 
             portfolioService.updateCountFishingspot(id, dto);
 

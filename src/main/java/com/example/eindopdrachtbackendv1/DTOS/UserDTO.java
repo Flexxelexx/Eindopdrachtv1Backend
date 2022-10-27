@@ -12,7 +12,7 @@ public class UserDTO {
 
     public Long id;
     @NotBlank
-    public String profilename;
+    public String username;
     @NotBlank
     @Size(min = 6, max = 20)
     public String password;
@@ -29,7 +29,7 @@ public class UserDTO {
         UserDTO dto = new UserDTO();
 
         dto.setId(user.getId());
-        dto.setProfilename(user.getProfilename());
+        dto.setUsername(user.getUsername());
         dto.setPassword(user.getPassword());
         dto.setEmail(user.getEmail());
         dto.setDob(user.getDob());
@@ -42,7 +42,7 @@ public class UserDTO {
         User user = new User();
 
         user.setId(userDTO.id);
-        user.setProfilename(userDTO.profilename);
+        user.setUsername(userDTO.username);
         user.setPassword(userDTO.password);
         user.setEmail(userDTO.email);
         user.setDob(userDTO.dob);
@@ -59,12 +59,12 @@ public class UserDTO {
         this.id = id;
     }
 
-    public String getProfilename() {
-        return profilename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setProfilename(String profilename) {
-        this.profilename = profilename;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

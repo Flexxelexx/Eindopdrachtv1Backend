@@ -4,7 +4,6 @@ import com.example.eindopdrachtbackendv1.DTOS.UserDTO;
 import com.example.eindopdrachtbackendv1.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -34,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok().body(optionalUser);
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO id) {
         String newUsername = userService.createUser(id);
 
@@ -44,15 +43,15 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping(value = "/{username}")
-    public ResponseEntity<UserDTO> updateProfilename(@PathVariable("username") Long id, @RequestBody UserDTO dto) {
+    @PutMapping(value = "/{id}/updatename")
+    public ResponseEntity<UserDTO> updateUsername(@PathVariable("username") Long id, @RequestBody UserDTO dto) {
 
-        userService.updateProfilename(id, dto);
+        userService.updateUsername(id, dto);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{username}")
+    @PutMapping(value = "/{id}/updatepassword")
     public ResponseEntity<UserDTO> updatePassword(@PathVariable("username") Long id, @RequestBody UserDTO dto) {
 
         userService.updatePassword(id, dto);
@@ -60,7 +59,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{username}")
+    @PutMapping(value = "/{id}/updateemail")
     public ResponseEntity<UserDTO> updateEmail(@PathVariable("username") Long id, @RequestBody UserDTO dto) {
 
         userService.updateEmail(id, dto);
@@ -68,7 +67,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{username}")
+    @PutMapping(value = "/{id}/updatedob")
     public ResponseEntity<UserDTO> updateDob(@PathVariable("username") Long id, @RequestBody UserDTO dto) {
 
         userService.updateDob(id, dto);
@@ -76,7 +75,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping(value = "/{username}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable("username") Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
