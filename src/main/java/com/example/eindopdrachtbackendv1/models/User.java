@@ -3,6 +3,7 @@ package com.example.eindopdrachtbackendv1.models;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -29,12 +30,13 @@ public class User {
 
     }
 
-    public User(Long id, String username, String password, String email, LocalDate dob) {
+    public User(Long id, String username, String password, String email, LocalDate dob, Collection<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.dob = dob;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -81,7 +83,7 @@ public class User {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }

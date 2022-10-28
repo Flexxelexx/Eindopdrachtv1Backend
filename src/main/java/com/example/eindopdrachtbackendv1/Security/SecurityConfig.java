@@ -50,9 +50,18 @@ public class SecurityConfig  {
                 .httpBasic().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/users/create").permitAll()
+
                 .antMatchers(HttpMethod.GET, "/users").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.GET,"/users/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"/users/{id}/**").authenticated()
+
+                .antMatchers(HttpMethod.PUT, "/users/{id}/**").permitAll()
+//                .antMatchers(HttpMethod.DELETE, "/**").permitAll()
+//                .antMatchers(HttpMethod.PATCH, "/**").permitAll()
+
+//                .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .antMatchers("/secret").hasAuthority("ADMIN")
+                .antMatchers("/secret").authenticated()
                 .antMatchers("/**").hasAnyAuthority("USER", "ADMIN")
                 .and()
                 .addFilterBefore(new JwtRequestFilter(jwtService, userDetailsService()), UsernamePasswordAuthenticationFilter.class)

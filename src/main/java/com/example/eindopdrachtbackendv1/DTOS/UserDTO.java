@@ -1,5 +1,6 @@
 package com.example.eindopdrachtbackendv1.DTOS;
 
+import com.example.eindopdrachtbackendv1.models.Role;
 import com.example.eindopdrachtbackendv1.models.User;
 
 import javax.validation.constraints.Email;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Collection;
 
 public class UserDTO {
 
@@ -22,6 +24,8 @@ public class UserDTO {
     @Past
     @NotBlank
     public LocalDate dob;
+
+    public String[] roles;
 
 
     public static UserDTO fromUser(User user) {
@@ -90,4 +94,5 @@ public class UserDTO {
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
+
 }
