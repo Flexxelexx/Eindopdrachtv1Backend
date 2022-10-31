@@ -9,11 +9,8 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue
-    @Column
-    Long id;
 
+    @Id
     @Column
     private String username;
     @Column
@@ -30,8 +27,7 @@ public class User {
 
     }
 
-    public User(Long id, String username, String password, String email, LocalDate dob, Collection<Role> roles) {
-        this.id = id;
+    public User(String username, String password, String email, LocalDate dob, Collection<Role> roles) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -39,13 +35,6 @@ public class User {
         this.roles = roles;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

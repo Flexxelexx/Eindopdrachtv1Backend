@@ -12,7 +12,6 @@ import java.util.Collection;
 
 public class UserDTO {
 
-    public Long id;
     @NotBlank
     public String username;
     @NotBlank
@@ -32,7 +31,6 @@ public class UserDTO {
 
         UserDTO dto = new UserDTO();
 
-        dto.setId(user.getId());
         dto.setUsername(user.getUsername());
         dto.setPassword(user.getPassword());
         dto.setEmail(user.getEmail());
@@ -45,7 +43,6 @@ public class UserDTO {
 
         User user = new User();
 
-        user.setId(userDTO.id);
         user.setUsername(userDTO.username);
         user.setPassword(userDTO.password);
         user.setEmail(userDTO.email);
@@ -55,13 +52,6 @@ public class UserDTO {
     }
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

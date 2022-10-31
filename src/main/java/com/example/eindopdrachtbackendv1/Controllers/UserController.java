@@ -7,13 +7,11 @@ import com.example.eindopdrachtbackendv1.Services.UserService;
 import com.example.eindopdrachtbackendv1.models.Role;
 import com.example.eindopdrachtbackendv1.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,16 +44,16 @@ public class UserController {
     }
 
     @GetMapping(value = "/{username}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable("username") Long id) {
+    public ResponseEntity<UserDTO> getUser(@PathVariable("username") String username) {
 
-        UserDTO optionalUser = userService.getUser(id);
+        UserDTO optionalUser = userService.getUser(username);
 
         return ResponseEntity.ok().body(optionalUser);
     }
 
 
     @PostMapping("/create")
-    public String createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
             User newUser = new User();
             newUser.setUsername(userDTO.username);
             newUser.setPassword(encoder.encode(userDTO.password));
@@ -72,46 +70,47 @@ public class UserController {
 
             userRepository.save(newUser);
 
-            return "Done";
+            return ResponseEntity.ok()
+                    .body(newUser);
         }
 
 
     @PutMapping(value = "/{id}/updatename")
-    public ResponseEntity<UserDTO> updateUsername(@PathVariable("id") Long id, @RequestBody UserDTO dto) {
+    public ResponseEntity<UserDTO> updateUsername(@PathVariable("id") String username, @RequestBody UserDTO dto) {
 
-        userService.updateUsername(id, dto);
+        userService.updateUsername(username, dto);
 
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}/updatepassword")
-    public ResponseEntity<UserDTO> updatePassword(@PathVariable("id") Long id, @RequestBody UserDTO dto) {
+    public ResponseEntity<UserDTO> updatePassword(@PathVariable("id") String username, @RequestBody UserDTO dto) {
 
         dto.setPassword(encoder.encode(dto.password));
-        userService.updatePassword(id, dto);
+        userService.updatePassword(username, dto);
 
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}/updateemail")
-    public ResponseEntity<UserDTO> updateEmail(@PathVariable("id") Long id, @RequestBody UserDTO dto) {
+    public ResponseEntity<UserDTO> updateEmail(@PathVariable("id") String username, @RequestBody UserDTO dto) {
 
-        userService.updateEmail(id, dto);
+        userService.updateEmail(username, dto);
 
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}/updatedob")
-    public ResponseEntity<UserDTO> updateDob(@PathVariable("id") Long id, @RequestBody UserDTO dto) {
+    public ResponseEntity<UserDTO> updateDob(@PathVariable("id") String username, @RequestBody UserDTO dto) {
 
-        userService.updateDob(id, dto);
+        userService.updateDob(username, dto);
 
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity<Object> deleteUser(@PathVariable("id") String username) {
+        userService.deleteUser(username);
         return ResponseEntity.noContent().build();
     }
 

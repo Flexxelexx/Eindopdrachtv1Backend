@@ -32,19 +32,19 @@ public class UserService {
         return collection;
     }
 
-    public UserDTO getUser (Long id) {
+    public UserDTO getUser (String username) {
         UserDTO dto = new UserDTO();
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userRepository.findById(username);
         if (user.isPresent()) {
             dto = UserDTO.fromUser(user.get());
         } else {
-            throw new UsernameNotFoundException(id.toString());
+            throw new UsernameNotFoundException(username);
         }
         return dto;
     }
 
-    public boolean userExists(Long id) {
-        return userRepository.existsById(id);
+    public boolean userExists(String username) {
+        return userRepository.existsById(username);
     }
 
     public String createUser (UserDTO userDTO) {
@@ -52,35 +52,35 @@ public class UserService {
         return newUser.getUsername();
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(String username) {
+        userRepository.deleteById(username);
     }
 
 
-    public void updateUsername( Long id, UserDTO newUser) {
-        if (!userExists(id)) throw new RecordNotFoundException();
-        User user = userRepository.findById(id).get();
+    public void updateUsername(String username, UserDTO newUser) {
+        if (!userExists(username)) throw new RecordNotFoundException();
+        User user = userRepository.findById(username).get();
         user.setUsername(newUser.getUsername());
         userRepository.save(user);
     }
 
-    public void updatePassword( Long id, UserDTO newUser) {
-        if (!userExists(id)) throw new RecordNotFoundException();
-        User user = userRepository.findById(id).get();
+    public void updatePassword(String username, UserDTO newUser) {
+        if (!userExists(username)) throw new RecordNotFoundException();
+        User user = userRepository.findById(username).get();
         user.setPassword(newUser.getPassword());
         userRepository.save(user);
     }
 
-    public void updateEmail( Long id, UserDTO newUser) {
-        if (!userExists(id)) throw new RecordNotFoundException();
-        User user = userRepository.findById(id).get();
+    public void updateEmail(String username, UserDTO newUser) {
+        if (!userExists(username)) throw new RecordNotFoundException();
+        User user = userRepository.findById(username).get();
         user.setEmail(newUser.getEmail());
         userRepository.save(user);
     }
 
-    public void updateDob( Long id, UserDTO newUser) {
-        if (!userExists(id)) throw new RecordNotFoundException();
-        User user = userRepository.findById(id).get();
+    public void updateDob(String username, UserDTO newUser) {
+        if (!userExists(username)) throw new RecordNotFoundException();
+        User user = userRepository.findById(username).get();
         user.setDob(newUser.getDob());
         userRepository.save(user);
     }
