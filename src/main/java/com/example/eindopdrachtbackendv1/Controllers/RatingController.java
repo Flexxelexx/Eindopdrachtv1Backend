@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/rating")
+@RequestMapping(value = "/ratings")
 public class RatingController {
 
     @Autowired

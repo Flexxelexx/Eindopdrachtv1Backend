@@ -1,14 +1,19 @@
 package com.example.eindopdrachtbackendv1.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
+
+
+import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class Upload {
 
     @Id
+    @GeneratedValue
     private Long id;
     @Column
     private double weightFish;
@@ -21,14 +26,24 @@ public class Upload {
     @Column
     private String photoFish;
     @Column
-    private LocalDateTime timeCaughtFish;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy@mm:ss")
+    private Date timeCaughtFish;
+
+    @OneToMany (fetch = FetchType.EAGER)
+    private Collection <User> users;
+
+    @OneToMany (fetch = FetchType.EAGER)
+    private Collection <Rating> ratings;
+
+    @OneToMany (fetch = FetchType.EAGER)
+    private Collection <Portfolio> portfolios;
 
 
     public Upload() {
 
     }
 
-    public Upload(Long id, double weightFish, double lengthFish, String charsFish, String speciesFish, String photoFish, LocalDateTime timeCaughtFish) {
+    public Upload(Long id, double weightFish, double lengthFish, String charsFish, String speciesFish, String photoFish, Date timeCaughtFish, Collection<User> users, Collection<Rating> ratings, Collection<Portfolio> portfolios) {
         this.id = id;
         this.weightFish = weightFish;
         this.lengthFish = lengthFish;
@@ -36,6 +51,9 @@ public class Upload {
         this.speciesFish = speciesFish;
         this.photoFish = photoFish;
         this.timeCaughtFish = timeCaughtFish;
+        this.users = users;
+        this.ratings = ratings;
+        this.portfolios = portfolios;
     }
 
     public Long getId() {
@@ -86,11 +104,35 @@ public class Upload {
         this.photoFish = photoFish;
     }
 
-    public LocalDateTime getTimeCaughtFish() {
-        return timeCaughtFish;
+    public Date getTimeCaughtFish() {
+        return new Date();
     }
 
-    public void setTimeCaughtFish(LocalDateTime timeCaughtFish) {
+    public void setTimeCaughtFish(Date timeCaughtFish) {
         this.timeCaughtFish = timeCaughtFish;
+    }
+
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<User> users) {
+        this.users = users;
+    }
+
+    public Collection<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Collection<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public Collection<Portfolio> getPortfolios() {
+        return portfolios;
+    }
+
+    public void setPortfolios(Collection<Portfolio> portfolios) {
+        this.portfolios = portfolios;
     }
 }

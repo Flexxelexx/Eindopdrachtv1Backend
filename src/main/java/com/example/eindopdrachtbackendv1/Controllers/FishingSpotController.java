@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/fishingspot")
+@RequestMapping(value = "/fishingspots")
 public class FishingSpotController {
 
    @Autowired
@@ -26,9 +26,9 @@ public class FishingSpotController {
    }
 
    @GetMapping(value = "/{fishingspot}")
-    public ResponseEntity<FishingSpotDTO> getFishingSpot(@PathVariable("fishingspot") Long id) {
+    public ResponseEntity<FishingSpotDTO> getFishingSpot(@PathVariable("fishingspot") String spotLocation) {
 
-       FishingSpotDTO optionalFishingSpot = fishingSpotService.getFishingSpot(id);
+       FishingSpotDTO optionalFishingSpot = fishingSpotService.getFishingSpot(spotLocation);
 
        return ResponseEntity.ok().body(optionalFishingSpot);
    }
@@ -45,11 +45,21 @@ public class FishingSpotController {
    }
 
    @PostMapping(value = "/{id}/updatelocation")
-    public ResponseEntity<FishingSpotDTO> updateSpotLocation (@PathVariable Long id, @RequestBody FishingSpotDTO dto) {
+    public ResponseEntity<FishingSpotDTO> updateSpotLocation (@PathVariable String spotLocation, @RequestBody FishingSpotDTO dto) {
 
-       fishingSpotService.updateSpotLocation(id, dto);
+       fishingSpotService.updateSpotLocation(spotLocation, dto);
 
        return ResponseEntity.noContent().build();
 
    }
+
+   @DeleteMapping(value = "/{id}/deletespot")
+    public ResponseEntity<Object> deleteLocation (@PathVariable String spotLocation) {
+
+       fishingSpotService.deleteFishingSpot(spotLocation);
+
+       return ResponseEntity.noContent().build();
+   }
+
+
 }

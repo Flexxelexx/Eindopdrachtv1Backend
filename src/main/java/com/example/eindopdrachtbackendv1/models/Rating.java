@@ -1,8 +1,7 @@
 package com.example.eindopdrachtbackendv1.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Rating {
@@ -16,18 +15,22 @@ public class Rating {
     private String fourStars;
     private String fiveStars;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection <Upload> uploads;
+
 
     public Rating() {
 
     }
 
-    public Rating(Long id, String oneStar, String twoStars, String threeStars, String fourStars, String fiveStars) {
+    public Rating(Long id, String oneStar, String twoStars, String threeStars, String fourStars, String fiveStars, Collection<Upload> uploads) {
         this.id = id;
         this.oneStar = oneStar;
         this.twoStars = twoStars;
         this.threeStars = threeStars;
         this.fourStars = fourStars;
         this.fiveStars = fiveStars;
+        this.uploads = uploads;
     }
 
     public Long getId() {
@@ -76,5 +79,13 @@ public class Rating {
 
     public void setFiveStars(String fiveStars) {
         this.fiveStars = fiveStars;
+    }
+
+    public Collection<Upload> getUploads() {
+        return uploads;
+    }
+
+    public void setUploads(Collection<Upload> uploads) {
+        this.uploads = uploads;
     }
 }

@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/portfolio")
+@RequestMapping(value = "/portfolios")
 public class PortfolioController {
 
     @Autowired

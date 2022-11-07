@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +54,7 @@ public class UserController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody UserDTO userDTO) {
             User newUser = new User();
             newUser.setUsername(userDTO.username);
             newUser.setPassword(encoder.encode(userDTO.password));
@@ -74,14 +75,6 @@ public class UserController {
                     .body(newUser);
         }
 
-
-    @PutMapping(value = "/{id}/updatename")
-    public ResponseEntity<UserDTO> updateUsername(@PathVariable("id") String username, @RequestBody UserDTO dto) {
-
-        userService.updateUsername(username, dto);
-
-        return ResponseEntity.noContent().build();
-    }
 
     @PutMapping(value = "/{id}/updatepassword")
     public ResponseEntity<UserDTO> updatePassword(@PathVariable("id") String username, @RequestBody UserDTO dto) {
@@ -108,7 +101,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}/deleteuser")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") String username) {
         userService.deleteUser(username);
         return ResponseEntity.noContent().build();

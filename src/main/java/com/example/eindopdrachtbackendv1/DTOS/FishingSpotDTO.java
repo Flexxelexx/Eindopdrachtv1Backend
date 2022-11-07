@@ -2,11 +2,11 @@ package com.example.eindopdrachtbackendv1.DTOS;
 
 import com.example.eindopdrachtbackendv1.models.FishingSpot;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 public class FishingSpotDTO {
-
-    private Long id;
+    @Id
     @NotBlank
     private String spotLocation;
 
@@ -15,7 +15,6 @@ public class FishingSpotDTO {
 
         FishingSpotDTO dto = new FishingSpotDTO();
 
-        dto.setId(fishingSpot.getId());
         dto.setSpotLocation(fishingSpot.getSpotLocation());
 
 
@@ -26,19 +25,10 @@ public class FishingSpotDTO {
 
         FishingSpot fishingSpot = new FishingSpot();
 
-        fishingSpot.setId(fishingSpotDTO.getId());
         fishingSpot.setSpotLocation(fishingSpotDTO.getSpotLocation());
 
 
         return fishingSpot;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getSpotLocation() {

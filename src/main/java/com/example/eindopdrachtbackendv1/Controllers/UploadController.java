@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/upload")
+@RequestMapping(value = "/uploads")
 public class UploadController {
 
     @Autowired

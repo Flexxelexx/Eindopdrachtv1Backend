@@ -31,13 +31,13 @@ public class FishingSpotService {
         return collection;
     }
 
-    public FishingSpotDTO getFishingSpot(Long id) {
+    public FishingSpotDTO getFishingSpot(String spotLocation) {
         FishingSpotDTO dto = new FishingSpotDTO();
-        Optional<FishingSpot> user = fishingSpotRepository.findById(id);
+        Optional<FishingSpot> user = fishingSpotRepository.findById(spotLocation);
         if (user.isPresent()) {
             dto = FishingSpotDTO.fromFishingSpot(user.get());
         } else {
-            throw new RecordNotFoundException(id.toString());
+            throw new RecordNotFoundException(spotLocation);
         }
         return dto;
     }
@@ -47,12 +47,12 @@ public class FishingSpotService {
         return newFishingSpot.getSpotLocation();
     }
 
-    public void deleteFishingSpot(Long id) {
-        fishingSpotRepository.deleteById(id);
+    public void deleteFishingSpot(String spotLocation) {
+        fishingSpotRepository.deleteById(spotLocation);
     }
 
-    public void updateSpotLocation(Long id, FishingSpotDTO newFishingSpot) {
-        FishingSpot fishingSpot = fishingSpotRepository.findById(id).get();
+    public void updateSpotLocation(String spotLocation, FishingSpotDTO newFishingSpot) {
+        FishingSpot fishingSpot = fishingSpotRepository.findById(spotLocation).get();
         fishingSpot.setSpotLocation(newFishingSpot.getSpotLocation());
         fishingSpotRepository.save(fishingSpot);
     }

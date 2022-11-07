@@ -1,37 +1,28 @@
 package com.example.eindopdrachtbackendv1.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "fishingspots")
 public class FishingSpot {
-
     @Id
-    @GeneratedValue
-    Long id;
-
     @Column
     private String spotLocation;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<User> users;
 
 
     public FishingSpot() {
 
     }
 
-    public FishingSpot(Long id, String spotLocation) {
-        this.id = id;
+    public FishingSpot(String spotLocation, Collection<User> users) {
         this.spotLocation = spotLocation;
-
+        this.users = users;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getSpotLocation() {
         return spotLocation;
@@ -41,4 +32,11 @@ public class FishingSpot {
         this.spotLocation = spotLocation;
     }
 
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<User> users) {
+        this.users = users;
+    }
 }

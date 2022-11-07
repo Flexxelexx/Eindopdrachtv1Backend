@@ -1,8 +1,10 @@
 package com.example.eindopdrachtbackendv1.DTOS;
 
 import com.example.eindopdrachtbackendv1.models.Upload;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class UploadDTO {
 
@@ -14,9 +16,10 @@ public class UploadDTO {
     public String speciesFish;
     public String photoFish;
 
-    public LocalDateTime timeCaughtFish;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy@HH:mm", locale = "en_GB")
+    public Date timeCaughtFish;
 
-    public static UploadDTO fromUpload (Upload upload) {
+    public static UploadDTO fromUpload(Upload upload) {
 
         UploadDTO dto = new UploadDTO();
 
@@ -94,11 +97,12 @@ public class UploadDTO {
         this.photoFish = photoFish;
     }
 
-    public LocalDateTime getTimeCaughtFish() {
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm @ dd-MM-yyyy", locale = "en_GB")
+    public Date getTimeCaughtFish() {
         return timeCaughtFish;
     }
 
-    public void setTimeCaughtFish(LocalDateTime timeCaughtFish) {
+    public void setTimeCaughtFish(Date timeCaughtFish) {
         this.timeCaughtFish = timeCaughtFish;
     }
 }

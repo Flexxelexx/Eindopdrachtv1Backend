@@ -1,7 +1,6 @@
 package com.example.eindopdrachtbackendv1.DTOS;
 
-import com.example.eindopdrachtbackendv1.models.Role;
-import com.example.eindopdrachtbackendv1.models.User;
+import com.example.eindopdrachtbackendv1.models.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +8,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Collection;
+
 
 public class UserDTO {
 
@@ -21,10 +21,13 @@ public class UserDTO {
     @NotBlank
     public String email;
     @Past
-    @NotBlank
     public LocalDate dob;
 
     public String[] roles;
+
+    public Collection<FishingSpot> fishingSpots;
+    public PortfolioDTO portfolios;
+    public Collection<Upload> uploads;
 
 
     public static UserDTO fromUser(User user) {
@@ -35,6 +38,9 @@ public class UserDTO {
         dto.setPassword(user.getPassword());
         dto.setEmail(user.getEmail());
         dto.setDob(user.getDob());
+        dto.setFishingSpots(user.getFishingSpots());
+        dto.setPortfolios(PortfolioDTO.fromPortfolio(user.getPortfolios()));
+        dto.setUploads(user.getUploads());
 
         return dto;
     }
@@ -47,6 +53,9 @@ public class UserDTO {
         user.setPassword(userDTO.password);
         user.setEmail(userDTO.email);
         user.setDob(userDTO.dob);
+        user.setFishingSpots(userDTO.fishingSpots);
+        user.setPortfolios(PortfolioDTO.toPortfolio(userDTO.portfolios));
+        user.setUploads(userDTO.uploads);
 
         return user;
     }
@@ -85,4 +94,35 @@ public class UserDTO {
         this.dob = dob;
     }
 
+    public String[] getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String[] roles) {
+        this.roles = roles;
+    }
+
+    public Collection<FishingSpot> getFishingSpots() {
+        return fishingSpots;
+    }
+
+    public void setFishingSpots(Collection<FishingSpot> fishingSpots) {
+        this.fishingSpots = fishingSpots;
+    }
+
+    public PortfolioDTO getPortfolios() {
+        return portfolios;
+    }
+
+    public void setPortfolios(PortfolioDTO portfolios) {
+        this.portfolios = portfolios;
+    }
+
+    public Collection<Upload> getUploads() {
+        return uploads;
+    }
+
+    public void setUploads(Collection<Upload> uploads) {
+        this.uploads = uploads;
+    }
 }

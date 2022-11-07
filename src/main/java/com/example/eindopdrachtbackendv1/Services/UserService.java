@@ -18,13 +18,13 @@ public class UserService {
     @Autowired
     private final UserRepository userRepository;
 
-    public UserService (UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     public List<UserDTO> getUsers() {
-        List <UserDTO> collection = new ArrayList<>();
-        List <User> list = userRepository.findAll();
+        List<UserDTO> collection = new ArrayList<>();
+        List<User> list = userRepository.findAll();
         for (User user : list) {
             collection.add(UserDTO.fromUser(user));
         }
@@ -32,7 +32,7 @@ public class UserService {
         return collection;
     }
 
-    public UserDTO getUser (String username) {
+    public UserDTO getUser(String username) {
         UserDTO dto = new UserDTO();
         Optional<User> user = userRepository.findById(username);
         if (user.isPresent()) {
@@ -47,7 +47,7 @@ public class UserService {
         return userRepository.existsById(username);
     }
 
-    public String createUser (UserDTO userDTO) {
+    public String createUser(UserDTO userDTO) {
         User newUser = userRepository.save(UserDTO.toUser(userDTO));
         return newUser.getUsername();
     }
@@ -56,13 +56,6 @@ public class UserService {
         userRepository.deleteById(username);
     }
 
-
-    public void updateUsername(String username, UserDTO newUser) {
-        if (!userExists(username)) throw new RecordNotFoundException();
-        User user = userRepository.findById(username).get();
-        user.setUsername(newUser.getUsername());
-        userRepository.save(user);
-    }
 
     public void updatePassword(String username, UserDTO newUser) {
         if (!userExists(username)) throw new RecordNotFoundException();
@@ -84,7 +77,4 @@ public class UserService {
         user.setDob(newUser.getDob());
         userRepository.save(user);
     }
-
-    // meerdere if statements maken voor elke ding
-
 }

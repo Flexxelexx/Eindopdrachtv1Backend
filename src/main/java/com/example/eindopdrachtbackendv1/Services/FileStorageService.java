@@ -24,6 +24,7 @@ public class FileStorageService {
     //    The next line is also possible instead of line 14 and 15
 //    private static String storageLocation = "/Users/vanoo/IdeaProjects/upload-download/uploads"
     @Value("${my.upload_location}")
+
     private Path fileStoragePath;
     private final String fileStorageLocation;
 
