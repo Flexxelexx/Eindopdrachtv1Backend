@@ -58,7 +58,7 @@ public class RatingController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{id}/give2stars")
+    @PutMapping(value = "/{id}/givetwostars")
     public ResponseEntity <RatingDTO> updateTwoStars (@PathVariable Long id, @RequestBody RatingDTO dto) {
 
         ratingService.updateTwoStars(id, dto);
@@ -66,7 +66,7 @@ public class RatingController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{id}/give3stars")
+    @PutMapping(value = "/{id}/givethreestars")
     public ResponseEntity <RatingDTO> updateThreeStars (@PathVariable Long id, @RequestBody RatingDTO dto) {
 
         ratingService.updateThreeStars(id, dto);

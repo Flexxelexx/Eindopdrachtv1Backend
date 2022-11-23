@@ -2,6 +2,8 @@ package com.example.eindopdrachtbackendv1.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -17,6 +19,8 @@ public class User {
     private String username;
 
     @Column
+    @NotBlank
+    @Size(min = 6)
     private String password;
     @Column
     @Email
@@ -36,7 +40,7 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Upload> uploads;
 
-
+// eager??
 
     public User() {
 

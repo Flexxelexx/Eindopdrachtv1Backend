@@ -1,11 +1,12 @@
 package com.example.eindopdrachtbackendv1.DTOS;
 
 import com.example.eindopdrachtbackendv1.models.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import net.bytebuddy.utility.nullability.NeverNull;
+import net.minidev.json.annotate.JsonIgnore;
+import org.springframework.lang.NonNull;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -15,7 +16,7 @@ public class UserDTO {
     @NotBlank
     public String username;
     @NotBlank
-    @Size(min = 6, max = 20)
+    @Size(min = 6)
     public String password;
     @Email
     @NotBlank
@@ -25,8 +26,11 @@ public class UserDTO {
 
     public String[] roles;
 
+    @JsonIgnore
     public Collection<FishingSpot> fishingSpots;
+//    @JsonIgnoreProperties("users")
     public PortfolioDTO portfolios;
+    @JsonIgnore
     public Collection<Upload> uploads;
 
 
@@ -39,8 +43,11 @@ public class UserDTO {
         dto.setEmail(user.getEmail());
         dto.setDob(user.getDob());
         dto.setFishingSpots(user.getFishingSpots());
-        dto.setPortfolios(PortfolioDTO.fromPortfolio(user.getPortfolios()));
         dto.setUploads(user.getUploads());
+        if (user.getPortfolios() != null ) {
+            dto.setPortfolios(PortfolioDTO.fromPortfolio(user.getPortfolios()));
+        }
+
 
         return dto;
     }
@@ -54,8 +61,10 @@ public class UserDTO {
         user.setEmail(userDTO.email);
         user.setDob(userDTO.dob);
         user.setFishingSpots(userDTO.fishingSpots);
-        user.setPortfolios(PortfolioDTO.toPortfolio(userDTO.portfolios));
         user.setUploads(userDTO.uploads);
+        if (userDTO.portfolios != null) {
+            user.setPortfolios(PortfolioDTO.toPortfolio(userDTO.portfolios));
+        }
 
         return user;
     }

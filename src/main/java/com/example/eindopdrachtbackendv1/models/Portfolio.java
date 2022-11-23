@@ -1,8 +1,6 @@
 package com.example.eindopdrachtbackendv1.models;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "portfolios")
