@@ -14,6 +14,8 @@ public class Upload {
     @Id
     @GeneratedValue
     private Long id;
+    //
+    //Fish class van maken;
     @Column
     private double weightFish;
     @Column
@@ -24,18 +26,23 @@ public class Upload {
     private String speciesFish;
     @Column
     private String photoFish;
+    //
     @Column
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy@mm:ss")
     private Date timeCaughtFish;
 
-    @OneToMany (fetch = FetchType.EAGER)
-    private Collection <User> users;
+    //Aanpassen naar many to one mappen op user_id
+//    @ManyToOne (fetch = FetchType.EAGER)
+//    private User user;
 
-    @OneToMany (fetch = FetchType.EAGER)
-    private Collection <Rating> ratings;
+    //Weghalen
+//    @OneToMany (fetch = FetchType.EAGER)
+//    private Collection <Rating> ratings;
 
-    @OneToMany (fetch = FetchType.EAGER)
-    private Collection <Portfolio> portfolios;
+    //Weghalen
+//    @OneToMany (fetch = FetchType.EAGER)
+//    private Collection <Portfolio> portfolios;
+
 
 
     public Upload() {

@@ -13,8 +13,9 @@ import java.util.Collection;
 @Table(name = "users")
 public class User {
 
-
     @Id
+    private Long id;
+
     @Column
     private String username;
 
@@ -34,11 +35,17 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<FishingSpot> fishingSpots;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Portfolio portfolios;
+    // ZOu ik toevoegen
+//    ManyToMany(fetch = FetchType.EAGER)
+//    private Collection<Fish> fishingSpots;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Upload> uploads;
+    // weghalen
+//    @OneToOne(fetch = FetchType.EAGER)
+//    private Portfolio portfolios;
+
+    // ManyToOne in Uploads class
+//    @OneToMany(fetch = FetchType.EAGER)
+//    private Collection<Upload> uploads;
 
 // eager??
 
@@ -103,6 +110,10 @@ public class User {
 
     public void setFishingSpots(Collection<FishingSpot> fishingSpots) {
         this.fishingSpots = fishingSpots;
+    }
+
+    public void addFishingSpots(FishingSpot fishingSpot) {
+        fishingSpots.add(fishingSpot);
     }
 
     public Portfolio getPortfolios() {

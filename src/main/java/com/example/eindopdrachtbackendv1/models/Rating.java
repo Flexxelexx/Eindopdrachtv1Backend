@@ -1,6 +1,10 @@
 package com.example.eindopdrachtbackendv1.models;
 
+import com.example.eindopdrachtbackendv1.enums.Stars;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Collection;
 
 @Entity
@@ -9,14 +13,21 @@ public class Rating {
     @Id
     @GeneratedValue
     private Long id;
-    private String oneStar;
-    private String twoStars;
-    private String threeStars;
-    private String fourStars;
-    private String fiveStars;
+    @Min(0) @Max(5)
+    private double StarCount;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Collection <Upload> uploads;
+//    private String oneStar;
+//    private String twoStars;
+//    private String threeStars;
+//    private String fourStars;
+//    private String fiveStars;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private Upload uploads;
+
+
+
+
 
 
     public Rating() {

@@ -1,8 +1,10 @@
 package com.example.eindopdrachtbackendv1.Services;
 
+import com.example.eindopdrachtbackendv1.DTOS.FishingSpotDTO;
 import com.example.eindopdrachtbackendv1.DTOS.UserDTO;
 import com.example.eindopdrachtbackendv1.Exceptions.RecordNotFoundException;
 import com.example.eindopdrachtbackendv1.Repositories.UserRepository;
+import com.example.eindopdrachtbackendv1.models.FishingSpot;
 import com.example.eindopdrachtbackendv1.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -77,4 +79,17 @@ public class UserService {
         user.setDob(newUser.getDob());
         userRepository.save(user);
     }
+
+    public void addFishSpotToUser(Long id,FishingSpotDTO fishingSpotDTO) {
+        if (!userRepository.existsById(id)) throw new RecordNotFoundException();
+        User user = userRepository.findById(id).get();
+
+        //fishingSpotDTO mappen naar FishingSpot
+                FishingSpot fishingSpot = new FishingSpot();
+
+        user.addFishingSpots(fishingSpot);
+        userRepository.save(user);
+
+    }
+
 }

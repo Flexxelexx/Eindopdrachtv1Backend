@@ -6,7 +6,10 @@ import java.util.Collection;
 @Entity
 @Table(name = "fishingspots")
 public class FishingSpot {
+
     @Id
+    private Long id;
+
     @Column
     private String spotLocation;
 
@@ -38,5 +41,9 @@ public class FishingSpot {
 
     public void setUsers(Collection<User> users) {
         this.users = users;
+    }
+
+    public void addUserToSpot(User user) {
+        users.add(user);
     }
 }

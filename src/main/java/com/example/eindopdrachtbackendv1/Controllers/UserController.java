@@ -1,5 +1,6 @@
 package com.example.eindopdrachtbackendv1.Controllers;
 
+import com.example.eindopdrachtbackendv1.DTOS.FishingSpotDTO;
 import com.example.eindopdrachtbackendv1.DTOS.UserDTO;
 import com.example.eindopdrachtbackendv1.Repositories.RoleRepository;
 import com.example.eindopdrachtbackendv1.Repositories.UserRepository;
@@ -105,6 +106,11 @@ public class UserController {
     public ResponseEntity<Object> deleteUser(@PathVariable("id") String username) {
         userService.deleteUser(username);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> addFishSpotToUser(@PathVariable Long id, @RequestBody FishingSpotDTO fishingSpotDTO){
+        userService.addFishSpotToUser(id, fishingSpotDTO);
     }
 
 

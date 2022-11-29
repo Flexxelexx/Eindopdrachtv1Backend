@@ -50,6 +50,14 @@ public class RatingController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/{upload_id}/{amount_of_starts}")
+    public ResponseEntity <RatingDTO> givaRating (@PathVariable("upload_id") Long uploadId, @PathVariable("amount_of_starts") Long starCount) {
+
+        //ratingService.updateOneStar(id, dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
     @PutMapping(value = "/{id}/giveonestar")
     public ResponseEntity <RatingDTO> updateOneStar (@PathVariable Long id, @RequestBody RatingDTO dto) {
 
