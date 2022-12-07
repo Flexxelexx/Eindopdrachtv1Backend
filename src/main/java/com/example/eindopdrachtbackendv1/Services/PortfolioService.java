@@ -1,8 +1,8 @@
 package com.example.eindopdrachtbackendv1.Services;
 
-import com.example.eindopdrachtbackendv1.DTOS.PortfolioDTO;
-import com.example.eindopdrachtbackendv1.Exceptions.RecordNotFoundException;
-import com.example.eindopdrachtbackendv1.Repositories.PortfolioRepository;
+import com.example.eindopdrachtbackendv1.dto.PortfolioDTO;
+import com.example.eindopdrachtbackendv1.exceptions.RecordNotFoundException;
+import com.example.eindopdrachtbackendv1.repositories.PortfolioRepository;
 import com.example.eindopdrachtbackendv1.models.Portfolio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

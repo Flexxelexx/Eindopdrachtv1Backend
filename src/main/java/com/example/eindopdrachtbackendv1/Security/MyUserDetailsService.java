@@ -1,6 +1,6 @@
 package com.example.eindopdrachtbackendv1.Security;
 
-import com.example.eindopdrachtbackendv1.Repositories.UserRepository;
+import com.example.eindopdrachtbackendv1.repositories.UserRepository;
 import com.example.eindopdrachtbackendv1.models.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

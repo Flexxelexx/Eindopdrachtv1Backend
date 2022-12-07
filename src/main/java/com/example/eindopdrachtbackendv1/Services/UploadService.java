@@ -1,9 +1,9 @@
 package com.example.eindopdrachtbackendv1.Services;
 
 
-import com.example.eindopdrachtbackendv1.DTOS.UploadDTO;
-import com.example.eindopdrachtbackendv1.Exceptions.RecordNotFoundException;
-import com.example.eindopdrachtbackendv1.Repositories.UploadRepository;
+import com.example.eindopdrachtbackendv1.dto.UploadDTO;
+import com.example.eindopdrachtbackendv1.exceptions.RecordNotFoundException;
+import com.example.eindopdrachtbackendv1.repositories.UploadRepository;
 import com.example.eindopdrachtbackendv1.models.Upload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

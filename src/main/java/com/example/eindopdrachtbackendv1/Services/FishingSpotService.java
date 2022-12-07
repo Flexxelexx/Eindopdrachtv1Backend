@@ -1,8 +1,8 @@
 package com.example.eindopdrachtbackendv1.Services;
 
-import com.example.eindopdrachtbackendv1.DTOS.FishingSpotDTO;
-import com.example.eindopdrachtbackendv1.Exceptions.RecordNotFoundException;
-import com.example.eindopdrachtbackendv1.Repositories.FishingSpotRepository;
+import com.example.eindopdrachtbackendv1.dto.FishingSpotDTO;
+import com.example.eindopdrachtbackendv1.exceptions.RecordNotFoundException;
+import com.example.eindopdrachtbackendv1.repositories.FishingSpotRepository;
 import com.example.eindopdrachtbackendv1.models.FishingSpot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

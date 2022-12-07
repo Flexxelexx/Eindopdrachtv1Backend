@@ -1,6 +1,6 @@
 package com.example.eindopdrachtbackendv1.Security;
 
-import com.example.eindopdrachtbackendv1.Repositories.UserRepository;
+import com.example.eindopdrachtbackendv1.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;

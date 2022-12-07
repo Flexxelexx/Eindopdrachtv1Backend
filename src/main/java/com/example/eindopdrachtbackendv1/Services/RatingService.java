@@ -1,8 +1,8 @@
 package com.example.eindopdrachtbackendv1.Services;
 
-import com.example.eindopdrachtbackendv1.DTOS.RatingDTO;
-import com.example.eindopdrachtbackendv1.Exceptions.RecordNotFoundException;
-import com.example.eindopdrachtbackendv1.Repositories.RatingRepository;
+import com.example.eindopdrachtbackendv1.dto.RatingDTO;
+import com.example.eindopdrachtbackendv1.exceptions.RecordNotFoundException;
+import com.example.eindopdrachtbackendv1.repositories.RatingRepository;
 import com.example.eindopdrachtbackendv1.models.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

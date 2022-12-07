@@ -1,9 +1,11 @@
 package com.example.eindopdrachtbackendv1.Services;
 
-import com.example.eindopdrachtbackendv1.DTOS.FishingSpotDTO;
-import com.example.eindopdrachtbackendv1.DTOS.UserDTO;
-import com.example.eindopdrachtbackendv1.Exceptions.RecordNotFoundException;
-import com.example.eindopdrachtbackendv1.Repositories.UserRepository;
+import com.example.eindopdrachtbackendv1.dto.FishingSpotDTO;
+import com.example.eindopdrachtbackendv1.dto.UserDTO;
+import com.example.eindopdrachtbackendv1.dto.input.UserInputDto;
+import com.example.eindopdrachtbackendv1.dto.output.UserOutputDto;
+import com.example.eindopdrachtbackendv1.exceptions.RecordNotFoundException;
+import com.example.eindopdrachtbackendv1.repositories.UserRepository;
 import com.example.eindopdrachtbackendv1.models.FishingSpot;
 import com.example.eindopdrachtbackendv1.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,79 +19,75 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
     @Autowired
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
+    public List<UserOutputDto> getAllUsers() {
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+        List<User> usersList = userRepository.findAll();
+        List<UserOutputDto> userOutputDtoList = new ArrayList<>();
 
-    public List<UserDTO> getUsers() {
-        List<UserDTO> collection = new ArrayList<>();
-        List<User> list = userRepository.findAll();
-        for (User user : list) {
-            collection.add(UserDTO.fromUser(user));
+        for(User user : usersList){
+            userOutputDtoList.add(userToUserOutputDto(user));
         }
 
-        return collection;
+        return userOutputDtoList;
     }
 
-    public UserDTO getUser(String username) {
-        UserDTO dto = new UserDTO();
-        Optional<User> user = userRepository.findById(username);
-        if (user.isPresent()) {
-            dto = UserDTO.fromUser(user.get());
-        } else {
-            throw new UsernameNotFoundException(username);
-        }
-        return dto;
+    public UserOutputDto getUserById(Long id) {
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(String.format("User with id %d not found", id)));
+
+        return userToUserOutputDto(user);
     }
 
-    public boolean userExists(String username) {
-        return userRepository.existsById(username);
-    }
+    public UserOutputDto createUser(UserInputDto inputUser) {
 
-    public String createUser(UserDTO userDTO) {
-        User newUser = userRepository.save(UserDTO.toUser(userDTO));
-        return newUser.getUsername();
-    }
-
-    public void deleteUser(String username) {
-        userRepository.deleteById(username);
-    }
-
-
-    public void updatePassword(String username, UserDTO newUser) {
-        if (!userExists(username)) throw new RecordNotFoundException();
-        User user = userRepository.findById(username).get();
-        user.setPassword(newUser.getPassword());
-        userRepository.save(user);
-    }
-
-    public void updateEmail(String username, UserDTO newUser) {
-        if (!userExists(username)) throw new RecordNotFoundException();
-        User user = userRepository.findById(username).get();
-        user.setEmail(newUser.getEmail());
-        userRepository.save(user);
-    }
-
-    public void updateDob(String username, UserDTO newUser) {
-        if (!userExists(username)) throw new RecordNotFoundException();
-        User user = userRepository.findById(username).get();
-        user.setDob(newUser.getDob());
-        userRepository.save(user);
-    }
-
-    public void addFishSpotToUser(Long id,FishingSpotDTO fishingSpotDTO) {
-        if (!userRepository.existsById(id)) throw new RecordNotFoundException();
-        User user = userRepository.findById(id).get();
-
-        //fishingSpotDTO mappen naar FishingSpot
-                FishingSpot fishingSpot = new FishingSpot();
-
-        user.addFishingSpots(fishingSpot);
+        User user = userInputDtoToUser(inputUser);
         userRepository.save(user);
 
+        return  userToUserOutputDto(user);
+
     }
 
+    //Helper functions
+
+    private UserOutputDto userToUserOutputDto(User user){
+
+        UserOutputDto userOutputDto = new UserOutputDto();
+        userOutputDto.setId(user.getId());
+
+        return userOutputDto;
+    }
+
+    private User userInputDtoToUser(UserInputDto userInputDto){
+
+        User user = new User();
+        user.setId(userInputDto.getId());
+
+        return user;
+    }
+
+    public UserOutputDto updateUser(UserInputDto userInput) {
+
+        Long inputId = userInput.getId();
+
+        User user = userRepository.findById(inputId).map(x -> userInputDtoToUser(userInput))
+                .orElseThrow(() -> new RecordNotFoundException(String.format("User with id %d not found", inputId)));
+
+        userRepository.save(user);
+
+        return userToUserOutputDto(user);
+
+    }
+
+    public void deleteUser(Long id) {
+
+        User user = userRepository.findById(id)
+                        .orElseThrow(() -> new RecordNotFoundException(String.format("User with id %d not found", id)));
+
+        userRepository.deleteById(id);
+
+    }
 }
